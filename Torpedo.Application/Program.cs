@@ -10,7 +10,7 @@ namespace Torpedo.Application
         private static void Main(string[] args)
         {
             Console.WriteLine("Torpedo Club Features © 2021 Vitasya Tavern");
-            Console.WriteLine("Press Q to stop telegram bot and close application");
+            Console.WriteLine("Press Q to stop telegram bot and close application\n");
 
             try
             {

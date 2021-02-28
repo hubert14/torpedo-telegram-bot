@@ -53,16 +53,24 @@ namespace Torpedo.Bot
         {
             if (e.Message.Chat.Type == ChatType.Private)
             {
-                DirectMessage(e.Message);
+                ProcessDirectMessage(e.Message);
                 return;
             }
 
             if (e.Message.ForwardFrom != null) return;
 
-            if (e.Message.Type == MessageType.Video) Convert(e.Message);
+            switch (e.Message.Type)
+            {
+                case MessageType.Video:
+                    ProcessConvert(e.Message);
+                    break;
+                case MessageType.Voice:
+                    ProcessVoice(e.Message);
+                    break;
+            }
         }
 
-        private void DirectMessage(Message message)
+        private void ProcessDirectMessage(Message message)
         {
             var messageToClient = message.Type == MessageType.Text
                 ? Phrases.RandomDirect
@@ -73,7 +81,7 @@ namespace Torpedo.Bot
             Task.Run(async () => { await _client.SendTextMessageAsync(message.Chat.Id, messageToClient); });
         }
 
-        private void Convert(Message message)
+        private void ProcessConvert(Message message)
         {
             Task.Run(async () =>
             {
@@ -117,6 +125,11 @@ namespace Torpedo.Bot
                     videoStream?.Dispose();
                 }
             });
+        }
+
+        private void ProcessVoice(Message message)
+        {
+            Task.Run(async () => { await _client.SendTextMessageAsync(message.Chat.Id, Phrases.RandomVoice, replyToMessageId: message.MessageId); });
         }
 
         public void Dispose()
