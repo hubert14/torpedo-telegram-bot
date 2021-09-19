@@ -1,10 +1,10 @@
 {
   // TODO: Input path to the FFMpeg exe files
-  "FFMPEG_EXECUTABLE_PATH": "E:\\Programs\\ffmpeg-2021-09-16-git-8f92a1862a-full_build\\bin\\",
+  "FFMPEG_EXECUTABLE_PATH": "",
 
   "Constans": {
     // TODO: Input your message for video title, which will be converted and send to the chat
-    "RESULT_FILE_NAME": "1",
+    "RESULT_FILE_NAME": "",
     // TODO: Input your message for error converting/uploading message
     "ERROR_UPLOAD_MESSAGE": "",
 
@@ -12,17 +12,17 @@
     "WHY_MESSAGE": "",
 
     // TODO: Input your telegram bot API key
-    "BOT_API_KEY": "2040258776:AAELIf0L8ZzzeOktcGm1ozlz5DajVq0ms3E"
+    "BOT_API_KEY": ""
   },
   "Content": {
     // TODO: Input phrases, which will be send to the client in direct chat with bot
-    "DirectPhrases": [ "s1s1ss1s1", "ssssss", "ss2s2s2s" ],
+    "DirectPhrases": [ "" ],
     // TODO: Input phrases, which will be send in the video caption with converted video
-    "CaptionPhrases": [ "d1d1d1d1d1", "ddddddd" ],
+    "CaptionPhrases": [ "" ],
     // TODO: Input phrases, which will be send in the audio caption with converted audio
-    "VoicePhrases": [ "v1v1vv1v1v1", "vvvvvvvv" ]
+    "VoicePhrases": [ "" ]
   },
   // TODO: Input path to the Recognize Model. More info https://alphacephei.com/vosk/models
-  "VOSK_RECOGNIZE_MODEL_PATH": "E:\\Project\\SpeechRecognition\\models\\BigRu"
+  "VOSK_RECOGNIZE_MODEL_PATH": ""
 
 }
