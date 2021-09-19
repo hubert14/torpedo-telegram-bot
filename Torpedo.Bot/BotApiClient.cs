@@ -54,11 +54,11 @@ namespace Torpedo.Bot
 
         private void HandleMessage(object sender, MessageEventArgs e)
         {
-            //if (e.Message.Chat.Type == ChatType.Private)
-            //{
-            //    ProcessDirectMessage(e.Message);
-            //    return;
-            //}
+            if (e.Message.Chat.Type == ChatType.Private)
+            {
+                ProcessDirectMessage(e.Message);
+                return;
+            }
 
             if (e.Message.ForwardFrom != null) return;
 
