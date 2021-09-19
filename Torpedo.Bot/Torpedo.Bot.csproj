@@ -9,7 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Torpedo.VideoConverter\Torpedo.VideoConverter.csproj" />
+    <ProjectReference Include="..\Torpedo.VideoConverter\Torpedo.Converters.csproj" />
   </ItemGroup>
 
 </Project>
