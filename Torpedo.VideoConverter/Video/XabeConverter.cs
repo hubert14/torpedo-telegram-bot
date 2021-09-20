@@ -26,7 +26,7 @@ namespace Torpedo.Converters
             }
             JToken jObj = JToken.Parse(json);
 
-            XabeConverter.FFMPEG_EXECUTABLE_PATH = (string)jObj.SelectToken("FFMPEG_EXECUTABLE_PATH");
+            FFMPEG_EXECUTABLE_PATH = (string)jObj.SelectToken("FFMPEG_EXECUTABLE_PATH");
         }
         public XabeConverter()
         {

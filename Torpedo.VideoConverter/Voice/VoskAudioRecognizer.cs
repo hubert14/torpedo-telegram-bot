@@ -24,7 +24,7 @@ namespace Torpedo.Converters
             }
             JToken jObj = JToken.Parse(json);
 
-            VoskAudioRecognizer.FFMPEG_EXECUTABLE_PATH = (string)jObj.SelectToken("FFMPEG_EXECUTABLE_PATH");
+            FFMPEG_EXECUTABLE_PATH = (string)jObj.SelectToken("FFMPEG_EXECUTABLE_PATH");
 
             FFmpeg.SetExecutablesPath(FFMPEG_EXECUTABLE_PATH);
 
@@ -32,7 +32,7 @@ namespace Torpedo.Converters
             
             Vosk.Vosk.SetLogLevel(-1);//Removes logs, put 0 to enable
             
-            VoskAudioRecognizer.VoskModel = new Model(VoskRecognizeModelPath);
+            VoskModel = new Model(VoskRecognizeModelPath);
 
         }
         async public Task<string> ConvertAsync(string filePath)
