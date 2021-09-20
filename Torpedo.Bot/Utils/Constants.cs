@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using Microsoft.Extensions.Options;
+using System.IO;
 using System.Text.Json;
 using Torpedo.Infrastructure;
 
@@ -8,14 +9,8 @@ namespace Torpedo.Bot.Utils
     {
         static Constants()
         {
-            string UserSetting = Path.Combine(Directory.GetCurrentDirectory(), "UserSetting.json");
-            string json;
 
-            using (StreamReader r = new StreamReader(UserSetting))
-            {
-                json = r.ReadToEnd();
-            }
-            UserSetting userSetting = JsonSerializer.Deserialize<UserSetting>(json);
+            UserSetting userSetting = UserSetting.GetUserSettingFromFile();
 
 
             RESULT_FILE_NAME = userSetting.RESULT_FILE_NAME;

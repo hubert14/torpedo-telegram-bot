@@ -17,14 +17,8 @@ namespace Torpedo.Converters
 
         static XabeConverter()
         {
-            string UserSetting = Path.Combine(Directory.GetCurrentDirectory(), "UserSetting.json");
-            string json;
+            UserSetting userSetting = UserSetting.GetUserSettingFromFile();
 
-            using (StreamReader r = new StreamReader(UserSetting))
-            {
-                json = r.ReadToEnd();
-            }
-            UserSetting userSetting = JsonSerializer.Deserialize<UserSetting>(json);
 
             FFMPEG_EXECUTABLE_PATH = userSetting.FFMPEG_EXECUTABLE_PATH;
         }

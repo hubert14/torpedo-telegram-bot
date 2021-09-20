@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
+using System.Text.Json;
 
 namespace Torpedo.Infrastructure
 {
@@ -10,6 +12,17 @@ namespace Torpedo.Infrastructure
         public UserSetting()
         {
 
+        }
+        public static UserSetting GetUserSettingFromFile()
+        {
+            string UserSetting = Path.Combine(Directory.GetCurrentDirectory(), "UserSetting.json");
+            string json;
+
+            using (StreamReader r = new StreamReader(UserSetting))
+            {
+                json = r.ReadToEnd();
+            }
+            return JsonSerializer.Deserialize<UserSetting>(json);
         }
         public string FFMPEG_EXECUTABLE_PATH { get; set; }
 

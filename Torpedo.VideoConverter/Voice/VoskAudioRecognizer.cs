@@ -17,14 +17,7 @@ namespace Torpedo.Converters
 
         static VoskAudioRecognizer()
         {
-            string UserSetting = Path.Combine(Directory.GetCurrentDirectory(), "UserSetting.json");
-            string json;
-
-            using (StreamReader r = new StreamReader(UserSetting))
-            {
-                json = r.ReadToEnd();
-            }
-            UserSetting userSetting = JsonSerializer.Deserialize<UserSetting>(json);
+            UserSetting userSetting = UserSetting.GetUserSettingFromFile();
 
             FFMPEG_EXECUTABLE_PATH = userSetting.FFMPEG_EXECUTABLE_PATH;
 

@@ -17,15 +17,8 @@ namespace Torpedo.Bot.Utils
         {
             static Content()
             {
-                string UserSetting = Path.Combine(Directory.GetCurrentDirectory(), "UserSetting.json");
-                string json;
+                UserSetting userSetting = UserSetting.GetUserSettingFromFile();
 
-                using (StreamReader r = new StreamReader(UserSetting))
-                {
-                    json = r.ReadToEnd();
-                }
-
-                UserSetting userSetting = JsonSerializer.Deserialize<UserSetting>(json);
 
                 Content.DirectPhrases = userSetting.DirectPhrases;
 
