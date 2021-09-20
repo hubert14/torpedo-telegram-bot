@@ -35,7 +35,7 @@ namespace Torpedo.Converters
             VoskModel = new Model(VoskRecognizeModelPath);
 
         }
-        async public Task<string> ConvertAsync(string filePath)
+        public async Task<string> ConvertAsync(string filePath)
         {
 
             var mediaInfo = FFmpeg.GetMediaInfo(filePath).Result;
