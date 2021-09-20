@@ -1,28 +1,15 @@
 {
-  // TODO: Input path to the FFMpeg exe files
   "FFMPEG_EXECUTABLE_PATH": "",
 
-  "Constans": {
-    // TODO: Input your message for video title, which will be converted and send to the chat
-    "RESULT_FILE_NAME": "",
-    // TODO: Input your message for error converting/uploading message
-    "ERROR_UPLOAD_MESSAGE": "",
+  "RESULT_FILE_NAME": "",
+  "ERROR_UPLOAD_MESSAGE": "",
+  "WHY_MESSAGE": "",
 
-    // TODO: Input your message for non-text content in the direct messages with bot
-    "WHY_MESSAGE": "",
+  "BOT_API_KEY": "",
+  "DirectPhrases": [ "" ],
+  "CaptionPhrases": [ "" ],
+  "VoicePhrases": [ "" ],
 
-    // TODO: Input your telegram bot API key
-    "BOT_API_KEY": ""
-  },
-  "Content": {
-    // TODO: Input phrases, which will be send to the client in direct chat with bot
-    "DirectPhrases": [ "" ],
-    // TODO: Input phrases, which will be send in the video caption with converted video
-    "CaptionPhrases": [ "" ],
-    // TODO: Input phrases, which will be send in the audio caption with converted audio
-    "VoicePhrases": [ "" ]
-  },
-  // TODO: Input path to the Recognize Model. More info https://alphacephei.com/vosk/models
   "VOSK_RECOGNIZE_MODEL_PATH": ""
 
 }

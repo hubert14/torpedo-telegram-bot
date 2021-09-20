@@ -1,9 +1,9 @@
-﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text.Json;
+using Torpedo.Infrastructure;
 
 namespace Torpedo.Bot.Utils
 {
@@ -24,16 +24,14 @@ namespace Torpedo.Bot.Utils
                 {
                     json = r.ReadToEnd();
                 }
-                JObject jObj = JObject.Parse(json);
 
-                var DirectPhrases = jObj.SelectToken("Content").SelectToken("DirectPhrases").ToString();
-                Content.DirectPhrases = JsonConvert.DeserializeObject<string[]>(DirectPhrases);
+                UserSetting userSetting = JsonSerializer.Deserialize<UserSetting>(json);
 
-                var CaptionPhrases = jObj.SelectToken("Content").SelectToken("CaptionPhrases").ToString();
-                Content.CaptionPhrases = JsonConvert.DeserializeObject<string[]>(CaptionPhrases);
+                Content.DirectPhrases = userSetting.DirectPhrases;
 
-                var VoicePhrases = jObj.SelectToken("Content").SelectToken("VoicePhrases").ToString();
-                Content.VoicePhrases = JsonConvert.DeserializeObject<string[]>(VoicePhrases);
+                Content.CaptionPhrases = userSetting.CaptionPhrases;
+
+                Content.VoicePhrases = userSetting.VoicePhrases;
 
 
             }

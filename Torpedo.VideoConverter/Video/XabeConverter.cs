@@ -1,10 +1,11 @@
-﻿using Newtonsoft.Json.Linq;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Xabe.FFmpeg;
+using Torpedo.Infrastructure;
+using System.Text.Json;
 
 namespace Torpedo.Converters
 {
@@ -12,8 +13,7 @@ namespace Torpedo.Converters
     {
         private static bool _ffmpegInitialized;
 
-        // TODO: Input path to the FFMpeg exe files
-        private static readonly string FFMPEG_EXECUTABLE_PATH ;
+        private static readonly string FFMPEG_EXECUTABLE_PATH;
 
         static XabeConverter()
         {
@@ -24,10 +24,11 @@ namespace Torpedo.Converters
             {
                 json = r.ReadToEnd();
             }
-            JToken jObj = JToken.Parse(json);
+            UserSetting userSetting = JsonSerializer.Deserialize<UserSetting>(json);
 
-            FFMPEG_EXECUTABLE_PATH = (string)jObj.SelectToken("FFMPEG_EXECUTABLE_PATH");
+            FFMPEG_EXECUTABLE_PATH = userSetting.FFMPEG_EXECUTABLE_PATH;
         }
+
         public XabeConverter()
         {
             if (!_ffmpegInitialized)

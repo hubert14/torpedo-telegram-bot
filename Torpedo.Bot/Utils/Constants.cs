@@ -1,5 +1,6 @@
-﻿using Newtonsoft.Json.Linq;
-using System.IO;
+﻿using System.IO;
+using System.Text.Json;
+using Torpedo.Infrastructure;
 
 namespace Torpedo.Bot.Utils
 {
@@ -14,13 +15,13 @@ namespace Torpedo.Bot.Utils
             {
                 json = r.ReadToEnd();
             }
-            JToken jObj = JToken.Parse(json);
-            jObj = jObj.SelectToken("Constans");
+            UserSetting userSetting = JsonSerializer.Deserialize<UserSetting>(json);
 
-            RESULT_FILE_NAME =(string)jObj.SelectToken("RESULT_FILE_NAME");
-            ERROR_UPLOAD_MESSAGE = (string)jObj.SelectToken("ERROR_UPLOAD_MESSAGE");
-            WHY_MESSAGE = (string)jObj.SelectToken("WHY_MESSAGE");
-            BOT_API_KEY = (string)jObj.SelectToken("BOT_API_KEY");
+
+            RESULT_FILE_NAME = userSetting.RESULT_FILE_NAME;
+            ERROR_UPLOAD_MESSAGE = userSetting.ERROR_UPLOAD_MESSAGE;
+            WHY_MESSAGE = userSetting.WHY_MESSAGE;
+            BOT_API_KEY = userSetting.BOT_API_KEY;
         }
         // TODO: Input your message for video title, which will be converted and send to the chat
         public static readonly string RESULT_FILE_NAME;

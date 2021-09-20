@@ -4,10 +4,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 16.0.30711.63
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Torpedo.Application", "Torpedo.Application\Torpedo.Application.csproj", "{67F44C52-AAD4-42CB-AC68-981D3D3742A7}"
+	ProjectSection(ProjectDependencies) = postProject
+		{FB03AB25-5AF5-4FDD-BBA4-AACD75CC8822} = {FB03AB25-5AF5-4FDD-BBA4-AACD75CC8822}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Torpedo.Bot", "Torpedo.Bot\Torpedo.Bot.csproj", "{F81DDC37-5474-43C2-B3ED-023EA7794435}"
+	ProjectSection(ProjectDependencies) = postProject
+		{FB03AB25-5AF5-4FDD-BBA4-AACD75CC8822} = {FB03AB25-5AF5-4FDD-BBA4-AACD75CC8822}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Torpedo.Converters", "Torpedo.VideoConverter\Torpedo.Converters.csproj", "{B9A3511C-3521-42D1-B9FF-ED4406A79F36}"
+	ProjectSection(ProjectDependencies) = postProject
+		{FB03AB25-5AF5-4FDD-BBA4-AACD75CC8822} = {FB03AB25-5AF5-4FDD-BBA4-AACD75CC8822}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Torpedo.Infrastructure", "Torpedo.Infrastructure\Torpedo.Infrastructure.csproj", "{FB03AB25-5AF5-4FDD-BBA4-AACD75CC8822}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +38,10 @@ Global
 		{B9A3511C-3521-42D1-B9FF-ED4406A79F36}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B9A3511C-3521-42D1-B9FF-ED4406A79F36}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B9A3511C-3521-42D1-B9FF-ED4406A79F36}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB03AB25-5AF5-4FDD-BBA4-AACD75CC8822}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB03AB25-5AF5-4FDD-BBA4-AACD75CC8822}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB03AB25-5AF5-4FDD-BBA4-AACD75CC8822}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB03AB25-5AF5-4FDD-BBA4-AACD75CC8822}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

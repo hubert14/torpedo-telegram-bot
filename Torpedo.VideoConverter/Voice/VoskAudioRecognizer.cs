@@ -1,10 +1,12 @@
-﻿using Newtonsoft.Json.Linq;
-using System;
+﻿using System;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Vosk;
 using Xabe.FFmpeg;
+using Torpedo.Infrastructure;
+using System.Text.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Torpedo.Converters
 {
@@ -22,13 +24,13 @@ namespace Torpedo.Converters
             {
                 json = r.ReadToEnd();
             }
-            JToken jObj = JToken.Parse(json);
+            UserSetting userSetting = JsonSerializer.Deserialize<UserSetting>(json);
 
-            FFMPEG_EXECUTABLE_PATH = (string)jObj.SelectToken("FFMPEG_EXECUTABLE_PATH");
+            FFMPEG_EXECUTABLE_PATH = userSetting.FFMPEG_EXECUTABLE_PATH;
 
             FFmpeg.SetExecutablesPath(FFMPEG_EXECUTABLE_PATH);
 
-            string VoskRecognizeModelPath= (string)jObj.SelectToken("VOSK_RECOGNIZE_MODEL_PATH");
+            string VoskRecognizeModelPath= userSetting.VOSK_RECOGNIZE_MODEL_PATH;
             
             Vosk.Vosk.SetLogLevel(-1);//Removes logs, put 0 to enable
             
