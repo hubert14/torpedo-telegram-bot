@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Threading.Tasks;
 
-namespace Torpedo.VideoConverter
+namespace Torpedo.Converters
 {
     public interface IVideoConverter
     {

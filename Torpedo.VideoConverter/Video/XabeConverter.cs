@@ -4,15 +4,24 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Xabe.FFmpeg;
+using Torpedo.Infrastructure;
+using System.Text.Json;
 
-namespace Torpedo.VideoConverter
+namespace Torpedo.Converters
 {
     public class XabeConverter : IVideoConverter
     {
         private static bool _ffmpegInitialized;
 
-        // TODO: Input path to the FFMpeg exe files
-        private const string FFMPEG_EXECUTABLE_PATH = "";
+        private static readonly string FFMPEG_EXECUTABLE_PATH;
+
+        static XabeConverter()
+        {
+            UserSetting userSetting = UserSetting.GetUserSettingFromFile();
+
+
+            FFMPEG_EXECUTABLE_PATH = userSetting.FFMPEG_EXECUTABLE_PATH;
+        }
 
         public XabeConverter()
         {

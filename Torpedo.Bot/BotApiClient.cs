@@ -7,7 +7,7 @@ using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
 using Telegram.Bot.Types.InputFiles;
 using Torpedo.Bot.Utils;
-using Torpedo.VideoConverter;
+using Torpedo.Converters;
 using File = System.IO.File;
 
 namespace Torpedo.Bot
@@ -15,12 +15,15 @@ namespace Torpedo.Bot
     public class BotApiClient : IDisposable
     {
         private readonly TelegramBotClient _client;
-        private readonly IVideoConverter _converter;
+        private readonly IVideoConverter _videoСonverter;
+        private readonly IVoiceConverter _voiceСonverter;
+
 
         public BotApiClient()
         {
             _client = new TelegramBotClient(Constants.BOT_API_KEY);
-            _converter = new XabeConverter();
+            _videoСonverter = new XabeConverter();
+            _voiceСonverter = new VoskAudioRecognizer();
         }
 
         public async Task<(int Id, string Name)> GetBotInfoAsync()
@@ -99,7 +102,7 @@ namespace Torpedo.Bot
                     await _client.DownloadFileAsync(file.FilePath, fs);
                     fs.Close();
 
-                    videoStream = await _converter.ConvertAsync(fs.Name);
+                    videoStream = await _videoСonverter.ConvertAsync(fs.Name);
 
                     Notificator.VideoConverted(message, videoStream.Length);
 
@@ -129,7 +132,36 @@ namespace Torpedo.Bot
 
         private void ProcessVoice(Message message)
         {
-            Task.Run(async () => { await _client.SendTextMessageAsync(message.Chat.Id, Phrases.RandomVoice, replyToMessageId: message.MessageId); });
+            Task.Run(async () =>
+            {
+                var fileName = Path.ChangeExtension(Path.GetTempFileName(), ".mp4");
+                var fs = File.Create(fileName);
+
+                try
+                {
+                    Notificator.VoiceHandled(message);
+
+                    var file = await _client.GetFileAsync(message.Voice.FileId);
+                    await _client.DownloadFileAsync(file.FilePath, fs);
+                    fs.Close();
+
+                    string RecognizedText = await _voiceСonverter.ConvertAsync(fs.Name);
+                    Notificator.VoiceConverted(message, RecognizedText.Length);
+
+                    await _client.SendTextMessageAsync(message.Chat.Id, RecognizedText + " " + Phrases.RandomVoice, replyToMessageId: message.MessageId);
+                }
+                catch (Exception exc)
+                {
+                    Notificator.Error(exc.Message);
+                    await _client.SendTextMessageAsync(message.Chat.Id,
+                        message.GetFromFirstName() + Constants.ERROR_UPLOAD_MESSAGE,
+                        replyToMessageId: message.MessageId);
+                }
+                finally
+                {
+                    File.Delete(fs.Name);
+                }
+            });
         }
 
         public void Dispose()

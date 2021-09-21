@@ -1,4 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text.Json;
+using Torpedo.Infrastructure;
 
 namespace Torpedo.Bot.Utils
 {
@@ -10,38 +15,42 @@ namespace Torpedo.Bot.Utils
 
         private static class Content
         {
+            static Content()
+            {
+                UserSetting userSetting = UserSetting.GetUserSettingFromFile();
+
+
+                Content.DirectPhrases = userSetting.DirectPhrases;
+
+                Content.CaptionPhrases = userSetting.CaptionPhrases;
+
+                Content.VoicePhrases = userSetting.VoicePhrases;
+
+
+            }
             public static string GetRandomCaption()
             {
                 var random = new Random();
-                return CaptionPhrases[random.Next(0, CaptionPhrases.Length - 1)];
+                return CaptionPhrases[random.Next(0, CaptionPhrases.Length )];
             }
 
             public static string GetRandomDirect()
             {
                 var random = new Random();
-                return DirectPhrases[random.Next(0, DirectPhrases.Length - 1)];
+                return DirectPhrases[random.Next(0, DirectPhrases.Length )];
             }
 
             public static string GetRandomVoice()
             {
                 var random = new Random();
-                return VoicePhrases[random.Next(0, VoicePhrases.Length - 1)];
+                return VoicePhrases[random.Next(0, VoicePhrases.Length )];
             }
 
-            private static readonly string[] DirectPhrases =
-            {
-                // TODO: Input phrases, which will be send to the client in direct chat with bot
-            };
+            private static readonly string[] DirectPhrases;
 
-            private static readonly string[] CaptionPhrases =
-            {
-                // TODO: Input phrases, which will be send in the video caption with converted video
-            };
+            private static readonly string[] CaptionPhrases;
 
-            private static readonly string[] VoicePhrases =
-            {
-                // TODO: Input phrases, which will be send in the video caption with converted video
-            };
+            private static readonly string[] VoicePhrases;
         }
     }
 }

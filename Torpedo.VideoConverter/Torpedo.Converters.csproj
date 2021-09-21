@@ -2,10 +2,16 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <AssemblyName>Torpedo.Converters</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Vosk" Version="0.3.31" />
     <PackageReference Include="Xabe.FFmpeg" Version="4.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Torpedo.Infrastructure\Torpedo.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

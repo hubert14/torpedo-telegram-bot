@@ -17,6 +17,11 @@ namespace Torpedo.Bot.Utils
         {
             SendNotification("Converting receive is started!");
         }
+        public static void ConnectingRecognizeModels()
+        {
+            SendNotification("Connecting Recognize Model");
+        }
+        
 
         public static void ConvertingReceiveStopped()
         {
@@ -43,6 +48,28 @@ namespace Torpedo.Bot.Utils
             SendNotification("Video converted!\n" +
                              $"Original File Size: {message.Video.FileSize}\n" +
                              $"Result File Size: {resultLength}");
+        }
+
+        public static void VoiceSendSuccess(Message message, string caption)
+        {
+            SendNotification($"Send to chat: {message.Chat.Title}\n" +
+                             $"Caption: {caption}\n" +
+                             $"Replied to message: {message.MessageId}");
+        }
+
+        public static void VoiceHandled(Message message)
+        {
+            SendNotification("Handled Audio\n" +
+                             $"Chat: {message.Chat.Title}\n" +
+                             $"FileSize: {message.Voice.FileSize}\n" +
+                             $"Description: {message.Caption}");
+        }
+
+        public static void VoiceConverted(Message message, long resultLength)
+        {
+            SendNotification("Audio converted!\n" +
+                             $"Original File Size: {message.Voice.FileSize}\n" +
+                             $"Result Text Length: {resultLength}");
         }
 
         public static void DirectTextMessage(Message message, string messageToClient)

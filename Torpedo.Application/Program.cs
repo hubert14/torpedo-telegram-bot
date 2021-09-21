@@ -28,7 +28,7 @@ namespace Torpedo.Application
                 Console.WriteLine("Telegram Bot failed. Error:");
                 Console.WriteLine(e.Message);
 
-                _client.Dispose();
+                _client?.Dispose();
                 return;
             }
 
