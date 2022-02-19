@@ -18,30 +18,48 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Torpedo.Converters", "Torpe
 		{FB03AB25-5AF5-4FDD-BBA4-AACD75CC8822} = {FB03AB25-5AF5-4FDD-BBA4-AACD75CC8822}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Torpedo.Infrastructure", "Torpedo.Infrastructure\Torpedo.Infrastructure.csproj", "{FB03AB25-5AF5-4FDD-BBA4-AACD75CC8822}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Torpedo.Infrastructure", "Torpedo.Infrastructure\Torpedo.Infrastructure.csproj", "{FB03AB25-5AF5-4FDD-BBA4-AACD75CC8822}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Debug|ARM64 = Debug|ARM64
 		Release|Any CPU = Release|Any CPU
+		Release|ARM64 = Release|ARM64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{67F44C52-AAD4-42CB-AC68-981D3D3742A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{67F44C52-AAD4-42CB-AC68-981D3D3742A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67F44C52-AAD4-42CB-AC68-981D3D3742A7}.Debug|ARM64.ActiveCfg = Debug|ARM64
+		{67F44C52-AAD4-42CB-AC68-981D3D3742A7}.Debug|ARM64.Build.0 = Debug|ARM64
 		{67F44C52-AAD4-42CB-AC68-981D3D3742A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{67F44C52-AAD4-42CB-AC68-981D3D3742A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67F44C52-AAD4-42CB-AC68-981D3D3742A7}.Release|ARM64.ActiveCfg = Release|ARM64
+		{67F44C52-AAD4-42CB-AC68-981D3D3742A7}.Release|ARM64.Build.0 = Release|ARM64
 		{F81DDC37-5474-43C2-B3ED-023EA7794435}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F81DDC37-5474-43C2-B3ED-023EA7794435}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F81DDC37-5474-43C2-B3ED-023EA7794435}.Debug|ARM64.ActiveCfg = Debug|ARM64
+		{F81DDC37-5474-43C2-B3ED-023EA7794435}.Debug|ARM64.Build.0 = Debug|ARM64
 		{F81DDC37-5474-43C2-B3ED-023EA7794435}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F81DDC37-5474-43C2-B3ED-023EA7794435}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F81DDC37-5474-43C2-B3ED-023EA7794435}.Release|ARM64.ActiveCfg = Release|ARM64
+		{F81DDC37-5474-43C2-B3ED-023EA7794435}.Release|ARM64.Build.0 = Release|ARM64
 		{B9A3511C-3521-42D1-B9FF-ED4406A79F36}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B9A3511C-3521-42D1-B9FF-ED4406A79F36}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9A3511C-3521-42D1-B9FF-ED4406A79F36}.Debug|ARM64.ActiveCfg = Debug|ARM64
+		{B9A3511C-3521-42D1-B9FF-ED4406A79F36}.Debug|ARM64.Build.0 = Debug|ARM64
 		{B9A3511C-3521-42D1-B9FF-ED4406A79F36}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B9A3511C-3521-42D1-B9FF-ED4406A79F36}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9A3511C-3521-42D1-B9FF-ED4406A79F36}.Release|ARM64.ActiveCfg = Release|ARM64
+		{B9A3511C-3521-42D1-B9FF-ED4406A79F36}.Release|ARM64.Build.0 = Release|ARM64
 		{FB03AB25-5AF5-4FDD-BBA4-AACD75CC8822}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{FB03AB25-5AF5-4FDD-BBA4-AACD75CC8822}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB03AB25-5AF5-4FDD-BBA4-AACD75CC8822}.Debug|ARM64.ActiveCfg = Debug|ARM64
+		{FB03AB25-5AF5-4FDD-BBA4-AACD75CC8822}.Debug|ARM64.Build.0 = Debug|ARM64
 		{FB03AB25-5AF5-4FDD-BBA4-AACD75CC8822}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FB03AB25-5AF5-4FDD-BBA4-AACD75CC8822}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB03AB25-5AF5-4FDD-BBA4-AACD75CC8822}.Release|ARM64.ActiveCfg = Release|ARM64
+		{FB03AB25-5AF5-4FDD-BBA4-AACD75CC8822}.Release|ARM64.Build.0 = Release|ARM64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

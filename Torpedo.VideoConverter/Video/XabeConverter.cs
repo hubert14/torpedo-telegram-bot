@@ -3,43 +3,32 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using Xabe.FFmpeg;
 using Torpedo.Infrastructure;
-using System.Text.Json;
+using Xabe.FFmpeg;
 
-namespace Torpedo.Converters
+namespace Torpedo.Converters.Video
 {
     public class XabeConverter : IVideoConverter
     {
-        private static bool _ffmpegInitialized;
-
-        private static readonly string FFMPEG_EXECUTABLE_PATH;
-
-        static XabeConverter()
+        public XabeConverter(Settings settings)
         {
-            UserSetting userSetting = UserSetting.GetUserSettingFromFile();
-
-
-            FFMPEG_EXECUTABLE_PATH = userSetting.FFMPEG_EXECUTABLE_PATH;
-        }
-
-        public XabeConverter()
-        {
-            if (!_ffmpegInitialized)
+            if (!string.IsNullOrWhiteSpace(settings.FFMpegPath))
             {
-                FFmpeg.SetExecutablesPath(FFMPEG_EXECUTABLE_PATH);
-                _ffmpegInitialized = true;
+                FFmpeg.SetExecutablesPath(settings.FFMpegPath);
             }
         }
 
         public async Task<Stream> ConvertAsync(string filePath)
         {
-            var outputPath = Path.ChangeExtension(Path.GetTempFileName(), ".mp4");
+            var tempFile = Path.GetTempFileName();
+            var outputPath = Path.ChangeExtension(tempFile, ".mp4");
+
             var ms = new MemoryStream();
 
             try
             {
                 var mediaInfo = await FFmpeg.GetMediaInfo(filePath);
+
                 var watermarkPath = Path.Combine(Directory.GetCurrentDirectory(), "Resources", "watermark.png");
 
                 IStream videoStream = mediaInfo.VideoStreams.FirstOrDefault()
@@ -56,20 +45,23 @@ namespace Torpedo.Converters
 
                 if (!streams.Any()) throw new Exception("Video and Audio stream not found");
 
-                await FFmpeg.Conversions.New()
+                Console.WriteLine("Start conversion. Output: " + outputPath);
+                var result = await FFmpeg.Conversions.New()
                     .AddStream(streams)
                     .SetOutput(outputPath)
                     .Start();
 
-                var fs = File.Open(outputPath, FileMode.Open);
+                Console.WriteLine($"Conversion finished. Duration: {result.Duration}");
+
+                using var fs = File.OpenRead(outputPath);
                 await fs.CopyToAsync(ms);
-                fs.Close();
+                fs.Flush();
 
                 ms.Seek(0, SeekOrigin.Begin);
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                await ms.DisposeAsync();
+                Console.WriteLine("Convert error: " + e.Message);
                 throw;
             }
             finally

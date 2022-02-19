@@ -1,13 +1,15 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net5.0</TargetFramework>
     <AssemblyName>Torpedo.Converters</AssemblyName>
+    <Platforms>AnyCPU;ARM64</Platforms>
+    <LangVersion>8</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Vosk" Version="0.3.31" />
-    <PackageReference Include="Xabe.FFmpeg" Version="4.4.0" />
+    <PackageReference Include="Xabe.FFmpeg" Version="5.1.0" />
   </ItemGroup>
 
   <ItemGroup>

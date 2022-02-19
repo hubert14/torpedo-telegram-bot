@@ -8,7 +8,7 @@ using Torpedo.Infrastructure;
 using System.Text.Json;
 using Newtonsoft.Json.Linq;
 
-namespace Torpedo.Converters
+namespace Torpedo.Converters.Voice
 {
     public class VoskAudioRecognizer : IVoiceConverter
     {

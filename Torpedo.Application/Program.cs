@@ -1,44 +1,42 @@
-﻿using System;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using System;
+using System.Threading.Tasks;
 using Torpedo.Bot;
+using Torpedo.Converters.Video;
+using Torpedo.Infrastructure;
 
 namespace Torpedo.Application
 {
     internal class Program
     {
-        private static BotApiClient _client;
+        static IConfiguration Configuration = new ConfigurationBuilder()
+            .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+            .AddJsonFile($"appsettings.local.json", optional: true, reloadOnChange: true)
+            .AddEnvironmentVariables()
+            .Build();
 
-        private static void Main(string[] args)
+        public static IHostBuilder CreateHostBuilder(string[] args) =>
+            new HostBuilder().ConfigureServices((hostContext, services) =>
+            {
+                var config = new Settings();
+                Configuration.Bind(config);
+                services.AddSingleton(config);
+                services.AddSingleton<XabeConverter>();
+                services.AddSingleton<TelegramBot>();
+                services.AddSingleton<DiscordBot>();
+
+            });
+
+        private static async Task Main(string[] args)
         {
-            Console.WriteLine("Torpedo Club Features © 2021 Vitasya Tavern");
-            Console.WriteLine("Press Q to stop telegram bot and close application\n");
+            Console.WriteLine("Torpedo Club Features © 2022 Vitasya Tavern");
 
-            try
-            {
-                Console.WriteLine("Starting Telegram Bot");
+            var host = CreateHostBuilder(args).Build();
+            host.Services.GetRequiredService<DiscordBot>();
 
-                _client = new BotApiClient();
-                var (id, name) = _client.GetBotInfoAsync().Result;
-
-                Console.WriteLine($"Bot init successfully. ID: {id} | Name: {name}");
-
-                _client.StartConvert();
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Telegram Bot failed. Error:");
-                Console.WriteLine(e.Message);
-
-                _client?.Dispose();
-                return;
-            }
-
-            ConsoleKey key;
-            do
-            {
-                key = Console.ReadKey(true).Key;
-            } while (key != ConsoleKey.Q);
-
-            _client.Dispose();
+            await host.RunAsync();
         }
     }
 }
