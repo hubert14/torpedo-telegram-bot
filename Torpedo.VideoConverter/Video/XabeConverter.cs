@@ -18,7 +18,7 @@ namespace Torpedo.Converters.Video
             }
         }
 
-        public async Task<Stream> ConvertAsync(string filePath)
+        public async Task<MemoryStream> ConvertAsync(string filePath)
         {
             var tempFile = Path.GetTempFileName();
             var outputPath = Path.ChangeExtension(tempFile, ".mp4");

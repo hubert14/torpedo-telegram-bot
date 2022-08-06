@@ -47,13 +47,13 @@ namespace Torpedo.Bot
             await channel.SendFileAsync(str, "avatar.png", message);
         }
 
-        public async Task TelegramMessageReceived(Stream fileStream, string caption = null)
+        public async Task TelegramMessageReceived(Stream fileStream, string fileName, string caption = null)
         {
             try
             {
                 var guild = _discordClient.GetGuild(_settings.GuildId);
                 var channel = guild.GetTextChannel(_settings.Channels.Memes);
-                await channel.SendFileAsync(fileStream, "torpedo_meme.png", caption);
+                await channel.SendFileAsync(fileStream, fileName, caption);
             }
             catch(Exception ex)
             {

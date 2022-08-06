@@ -5,6 +5,6 @@ namespace Torpedo.Converters.Video
 {
     public interface IVideoConverter
     {
-        Task<Stream> ConvertAsync(string filePath);
+        Task<MemoryStream> ConvertAsync(string filePath);
     }
 }

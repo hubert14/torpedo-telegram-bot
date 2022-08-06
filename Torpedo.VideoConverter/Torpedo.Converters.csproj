@@ -1,19 +1,70 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <AssemblyName>Torpedo.Converters</AssemblyName>
     <Platforms>AnyCPU;ARM64</Platforms>
     <LangVersion>8</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Vosk" Version="0.3.31" />
-    <PackageReference Include="Xabe.FFmpeg" Version="5.1.0" />
+    <PackageReference Include="Vosk" Version="0.3.38" />
+    <PackageReference Include="Xabe.FFmpeg" Version="5.2.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Torpedo.Infrastructure\Torpedo.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="FFMpeg\ffmpeg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="FFMpeg\ffplay">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="FFMpeg\ffprobe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Voice\Model\am\final.mdl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Voice\Model\conf\mfcc.conf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Voice\Model\conf\model.conf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Voice\Model\graph\disambig_tid.int">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Voice\Model\graph\Gr.fst">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Voice\Model\graph\HCLr.fst">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Voice\Model\graph\phones\word_boundary.int">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Voice\Model\ivector\final.dubm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Voice\Model\ivector\final.ie">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Voice\Model\ivector\final.mat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Voice\Model\ivector\global_cmvn.stats">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Voice\Model\ivector\online_cmvn.conf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Voice\Model\ivector\splice.conf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>
